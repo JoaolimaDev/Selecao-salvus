@@ -1,0 +1,27 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "Processo seletivo Salvus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaolimaDev/selecao-salvus.git"
+  },
+  "author": "João vitor de lima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoaolimaDev/selecao-salvus/issues"
+  },
+  "homepage": "https://github.com/JoaolimaDev/selecao-salvus#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.10.3",
+    "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3"
+  }
+}
