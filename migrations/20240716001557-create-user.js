@@ -16,10 +16,23 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      abilities: {
+        type: Sequelize.JSON,
+        allowNull: true,
+        defaultValue: {}, 
+      },
+      scopes: {
+        type: Sequelize.JSON,
+        allowNull: true,
+        defaultValue: {}, 
       },
       createdAt: {
         allowNull: false,
