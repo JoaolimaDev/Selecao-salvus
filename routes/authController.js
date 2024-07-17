@@ -1,6 +1,52 @@
 const { loginUser } = require('../services/authService');
 const express = require('express');
 
+
+/**
+ * @swagger
+ * tags:
+ *   - name: Auth
+ *     description: Authentication related endpoints
+ *
+ * /auth/login:
+ *   post:
+ *     tags: [Auth]
+ *     summary: Autêntica o usuário!
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: "testeSalvus@gmail.com"
+ *               password:
+ *                 type: string
+ *                 example: "12345678@Salvus"
+ *     responses:
+ *       200:
+ *         description: Sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Invalid input
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
+
 const login = async (req, res) => {
 
     const {email, password} = req.body;

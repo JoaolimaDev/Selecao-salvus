@@ -7,22 +7,12 @@ module.exports = {
         id: 3,
         firstname: 'John',
         lastname: 'Doe',
-        email: 'john.doe@example.com',
-        password: 'hashedpassword1',
+        email: 'testeSalvus@gmail.com',
+        password: '$2a$10$chixCB2C8K4mHZHduBYbqeSaW2ES5gI6HhZeuHoZrvRlH8GgIDsh.',
         scope_id: 1, // admin
         createdAt: new Date(),
         updatedAt: new Date(),
-      },
-      {
-        id: 4,
-        firstname: 'Jane',
-        lastname: 'Doe',
-        email: 'jane.doe@example.com',
-        password: 'hashedpassword2',
-        scope_id: 2, // user
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
+      }
     ], {});
   },
 

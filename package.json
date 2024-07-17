@@ -27,6 +27,8 @@
     "mysql2": "^3.10.3",
     "nodemon": "^3.1.4",
     "sequelize": "^6.37.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "validator": "^13.12.0"
   }
 }
