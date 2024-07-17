@@ -6,6 +6,7 @@ const authController = require("./routes/authController");
 const productController = require("./routes/productController");
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -43,6 +44,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 app.use(express.json());
+app.use(cors());
 app.use("/users", userController);
 app.use("/auth", authController);
 app.use("/produtos", productController);
