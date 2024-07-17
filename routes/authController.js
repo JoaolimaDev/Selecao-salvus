@@ -16,7 +16,7 @@ const login = async (req, res) => {
 
     try {
         const loginResult = await loginUser(email, password);
-        return res.status(200).json({ message: 'Usuario autênticado!', token: loginResult });
+        return res.status(200).json({ message: loginResult });
     } catch (error) {
         return res.status(400).json({ message: error.message });
 
