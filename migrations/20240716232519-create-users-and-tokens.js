@@ -135,7 +135,7 @@ module.exports = {
         onDelete: 'CASCADE',
       },
       token: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(512),
         allowNull: false,
       },
       createdAt: {

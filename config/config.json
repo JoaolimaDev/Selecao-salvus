@@ -3,21 +3,21 @@
     "username": "admin",
     "password": "admin",
     "database": "database_development",
-    "host": "localhost", 
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "admin",
     "password": "admin",
     "database": "database_test",
-    "host": "localhost", 
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "admin",
     "password": "admin",
     "database": "database_production",
-    "host": "localhost",  
+    "host": "localhost",
     "dialect": "mysql"
   }
 }

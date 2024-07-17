@@ -9,7 +9,6 @@ const register =  async (req, res) => {
 
     const {firstname, lastname, email, password, scopeName, abilities} = req.body;
 
-    
     if (!Object.keys(req.body).length) {
         return res.status(400).json({ message: "Corpo de requisição não pode ser vazio!" });
     }
@@ -41,43 +40,40 @@ const register =  async (req, res) => {
 
 const update = async (req, res) => {
 
-    return res.status(400).json({ message: req.userAbility });
-    // const updates = req.body;
+    const updates = req.body;
 
-    // if (!Object.keys(req.body).length) {
-    //     return res.status(400).json({ message: "Corpo de requisição não pode ser vazio!" });
-    // }
+    const userId = req.params.id;
 
-    // const missingFields = ['firstname', 'lastname', 'email', 'password'].filter(field => !req.body[field]);
-    // if (missingFields.length) {
-    //     return res.status(400).json({ message: `Por favor insira: ${missingFields.join(', ')}` });
-    // }
+    if (!Object.keys(req.body).length) {
+        return res.status(400).json({ message: "Corpo de requisição não pode ser vazio!" });
+    }
 
-    // if (!validator.isEmail(req.body.email)) {
-    //     return res.status(400).json({ message: 'Formato inválido de email!' });
-    // }
+    const missingFields = ['firstname', 'lastname', 'email', 'password', 'scopeName', 'abilities'].filter(field => !req.body[field]);
+    if (missingFields.length) {
+        return res.status(400).json({ message: `Por favor insira: ${missingFields.join(', ')}` });
+    }
+
+    if (!validator.isEmail(req.body.email)) {
+        return res.status(400).json({ message: 'Formato inválido de email!' });
+    }
     
-    // if (updates.password) {
-    //     updates.password = await User.hashPassword(updates.password);
-    // }
+    const passwordErrors = passwordValidationRules(req.body.password);
+    if (passwordErrors.length) {
+        return res.status(400).json({ message: `Erro de validação: ${passwordErrors.join(' ')}` });
+    }
 
-    // const passwordErrors = passwordValidationRules(req.body.password);
-    // if (passwordErrors.length) {
-    //     return res.status(400).json({ message: `Erro de validação: ${passwordErrors.join(' ')}` });
-    // }
-
-    // try {
-    //     const updatedUserRes =  await updateUser(req.userId, updates);
-    //     return res.status(200).json({ message: 'Usuario atualizado!', user: updatedUserRes });
-    // } catch (error) {
-    //     return res.status(400).json({ message: error.message });
-    // }
+    try {
+        const updatedUserRes =  await updateUser(userId, updates, req.userId);
+        return res.status(200).json({ message: 'Usuario atualizado!', user: updatedUserRes });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
 
 };
 
 const router = express.Router();
 router.post('/register', register);
-router.put('/update', authMiddleware, update);
+router.put('/update/:id', authMiddleware, update);
 
 
 module.exports = router;
