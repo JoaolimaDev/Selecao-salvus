@@ -21,7 +21,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Docker version 26+
 
 ## 📜 Observações
-  A porta 3000 será mapeada para o backend e a porta 5000 para o front assegure que elas estejam disponíveis, também observe se a porta 3306 está disponível para o mysql, também disponibilizei o PHPMYADMIN na porta 8081 no localhost 3000 para monitoramento do Banco de dados. 
+  A porta 3000 será mapeada para o backend e a porta 5000 para o front assegure que elas estejam disponíveis, também observe se a porta 3306 está disponível para o mysql, também disponibilizei o PHPMYADMIN na porta 8081 no localhost 3000 para monitoramento do Banco de dados. Respostas ao questionário téorico no arquivo Respostas.txt
 
 ## 🚀 Instalação
 
