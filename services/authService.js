@@ -1,5 +1,5 @@
 // services/userService.js
-const { User } = require('../models');
+const { User, Token } = require('../models');
 const bcrypt = require('bcryptjs'); 
 const { generateToken } = require("../config/auth")
 
@@ -12,7 +12,16 @@ const loginUser = async (email, password) => {
   return { token, userId: user.id };
 };
 
+const logout = async (token) => {
+  const result = await Token.findOne({where: {token}})
+
+  if (!result) {
+    throw new Error('Token não encontrado');
+  }
+  return  await result.destroy();
+};
 
 module.exports = {
-    loginUser
+    loginUser,
+    logout
 };

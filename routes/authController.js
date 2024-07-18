@@ -1,4 +1,4 @@
-const { loginUser } = require('../services/authService');
+const { loginUser, logout } = require('../services/authService');
 const express = require('express');
 
 
@@ -6,7 +6,7 @@ const express = require('express');
  * @swagger
  * tags:
  *   - name: Auth
- *     description: Authentication related endpoints
+ *     description: Autênticações
  *
  * /auth/login:
  *   post:
@@ -47,6 +47,47 @@ const express = require('express');
  *                   type: string
  */
 
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ * 
+ * tags:
+ *   - name: Auth
+ *     description: Logout
+ *
+ * /auth/logout:
+ *   get:
+ *     summary: Logout
+ *     tags: [Auth]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Invalid input
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
+
+
 const login = async (req, res) => {
 
     const {email, password} = req.body;
@@ -72,5 +113,23 @@ const login = async (req, res) => {
 
 const router = express.Router();
 router.post('/login', login);
+
+router.get('/logout', async (req, res) => {
+
+    const token = req.headers['authorization']?.split(' ')[1]; 
+
+    if (!token) {
+        return res.status(403).json({ message: 'Envie um JWT Bearer token na autênticação!' });
+    }
+
+    try {
+        const result = await logout(token);
+        return res.status(200).json({ message: result });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+
+    }
+
+});
 
 module.exports = router;

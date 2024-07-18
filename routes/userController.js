@@ -25,6 +25,8 @@ const validator = require('validator');
  *                 type: string
  *               password:
  *                 type: string
+ *               rpassword:
+ *                 type: string
  *               scopeName:
  *                 type: string
  *               abilities:
@@ -64,6 +66,8 @@ const validator = require('validator');
  *               email:
  *                 type: string
  *               password:
+ *                 type: string
+ *               rpassword:
  *                 type: string
  *               scopeName:
  *                 type: string
@@ -128,6 +132,9 @@ const validator = require('validator');
  *               password:
  *                 type: string
  *                 format: password
+ *               rpassword:
+ *                 type: string
+ *                 format: password
  *               scopeName:
  *                 type: string
  *               abilities:
@@ -144,15 +151,19 @@ const validator = require('validator');
  */
 const register =  async (req, res) => {
 
-    const {firstname, lastname, email, password, scopeName, abilities} = req.body;
+    const {firstname, lastname, email, password, rpassword, scopeName, abilities} = req.body;
 
     if (!Object.keys(req.body).length) {
         return res.status(400).json({ message: "Corpo de requisição não pode ser vazio!" });
     }
 
-    const missingFields = ['firstname', 'lastname', 'email', 'password', 'scopeName', 'abilities'].filter(field => !req.body[field]);
+    const missingFields = ['firstname', 'lastname', 'email', 'password', 'scopeName', 'rpassword', 'abilities'].filter(field => !req.body[field]);
     if (missingFields.length) {
         return res.status(400).json({ message: `Por favor insira: ${missingFields.join(', ')}` });
+    }
+
+    if (password !== rpassword) {
+        return res.status(400).json({ message: `As senhas não coincidem!` });
     }
 
     if (!validator.isEmail(email)) {
@@ -185,9 +196,13 @@ const update = async (req, res) => {
         return res.status(400).json({ message: "Corpo de requisição não pode ser vazio!" });
     }
 
-    const missingFields = ['firstname', 'lastname', 'email', 'password', 'scopeName', 'abilities'].filter(field => !req.body[field]);
+    const missingFields = ['firstname', 'lastname', 'email', 'password', 'scopeName', 'abilities', 'rpassword'].filter(field => !req.body[field]);
     if (missingFields.length) {
         return res.status(400).json({ message: `Por favor insira: ${missingFields.join(', ')}` });
+    }
+
+    if(req.body.password !== req.body.rpassword){
+        return res.status(400).json({ message: `As senhas não coincidem!` });
     }
 
     if (!validator.isEmail(req.body.email)) {
@@ -214,7 +229,18 @@ router.put('/update/:id', authMiddleware, update);
 
 router.post('/registeradmins', authMiddlewareAdmin, async (req, res) => {
     try {
-        const { firstname, lastname, email, password, scopeName, abilities } = req.body;
+
+        const missingFields = ['firstname', 'lastname', 'email', 'password', 'scopeName', 'abilities', 'rpassword'].filter(field => !req.body[field]);
+        if (missingFields.length) {
+            return res.status(400).json({ message: `Por favor insira: ${missingFields.join(', ')}` });
+        }
+
+        const { firstname, lastname, email, password, scopeName, abilities, rpassword } = req.body;
+
+        if (password !== rpassword) {
+            return res.status(400).json({ message: `As senhas não coincidem!` });
+        }
+
         const user = await createUserTeste(firstname, lastname, email, password, scopeName, abilities);
         delete user.dataValues.password;
         res.status(201).json(user);
