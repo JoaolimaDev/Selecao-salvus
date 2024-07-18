@@ -1,0 +1,85 @@
+Node.js:
+Explique o que é o Event Loop no Node.js e como ele funciona.
+Qual a diferença entre callbacks, Promises e async/await no Node.js?
+O Event Loop no Node.js é um mecanismo que permite a execução de operações assíncronas. É responsável por gerenciar a execução de callbacks e outras operações
+
+Callbacks: Funções passadas como argumento para outra função, executadas após a conclusão de uma operação assíncrona
+Promises: Objetos que representam a eventual conclusão (ou falha) de uma operação assíncrona.
+async/await: Sintaxe que permite escrever código assíncrono de maneira mais síncrona e legível.
+
+
+Como você lidaria com erros no Node.js? Dê exemplos de como tratar erros de maneira eficaz.
+React.js:
+Try/Catch: Para operações assíncronas com async/await.
+async function example() {
+  try {
+    const data = await someAsyncOperation();
+  } catch (err) {
+    console.error('Error:', err);
+  }
+}
+Promises: Usando .catch para capturar erros.
+someAsyncOperation()
+  .then(result => console.log(result))
+  .catch(err => console.error('Error:', err));
+
+
+Qual a diferença entre componentes funcionais e componentes de classe no React?
+Funcionais: Simples funções que retornam JSX.
+De Classe: Classes que estendem React.Component e possuem métodos de ciclo de vida.
+
+Explique o conceito de "state" e "props" no React. Como eles diferem?
+State: Dados internos de um componente que podem ser modificados dentro do próprio componente.
+Props: Dados passados para o componente pai, imutáveis dentro do componente filho.
+
+O que são hooks no React? Dê exemplos de alguns hooks mais usados e suas finalidades.
+Hooks são funções que permitem usar state e outros recursos do React em componentes funcionais.
+const [count, setCount] = useState(0);
+
+Bancos de Dados:
+Qual a diferença entre bancos de dados relacionais e não relacionais? Dê exemplos de quando usar cada um.
+Relacionais: Estruturados em tabelas com linhas e colunas, usam SQL.
+
+    Exemplo: MySQL, PostgreSQL.
+    Uso: Quando a consistência e as relações complexas entre dados são cruciais.
+	
+Não relacionais: Estruturados de várias formas (documentos, grafos, chave-valor), não usam SQL.
+
+    Exemplo: MongoDB, Redis.
+    Uso: Quando a flexibilidade e a escalabilidade são mais importantes que a consistência.
+
+Explique o conceito de "normalização" em bancos de dados relacionais.
+
+Processo de organizar dados em um banco de dados para reduzir redundância e melhorar a integridade dos dados.
+
+    1ª Forma Normal (1NF): Elimina grupos repetidos.
+    2ª Forma Normal (2NF): Remove dependências parciais.
+    3ª Forma Normal (3NF): Remove dependências transitivas.
+Como você lidaria com uma situação em que precisa escalar horizontalmente um banco de dados?
+
+Distribuir dados entre vários servidores para aumentar a capacidade de processamento.
+
+    Sharding: Dividir o banco de dados em pedaços independentes.
+    Replicação: Copiar dados entre vários servidores para balanceamento de carga e redundância.
+Git:
+Explique o que é o Git e por que ele é usado.
+Git é um sistema de controle de versão distribuído, usado para rastrear mudanças em arquivos e coordenar o trabalho em projetos de software entre várias pessoas.
+O que é um "branch" no Git? Como você gerencia os branches em um projeto grande?
+
+Um branch é uma linha de desenvolvimento independente, permitindo que você trabalhe em funcionalidades ou correções de bugs isoladamente.
+
+Criar: git branch nome-do-branch
+Trocar: git checkout nome-do-branch
+Mesclar: git merge nome-do-branch
+Deletar: git branch -d nome-do-branch
+
+O que são "merge conflicts" e como você resolve um conflito de merge no Git?
+
+Ocorrência quando mudanças conflitantes são feitas em um arquivo e Git não consegue automaticamente combinar as mudanças
+
+Resolva os conflitos no arquivo manualmente, então
+git add arquivo-com-conflito
+git commit
+
+
+
