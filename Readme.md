@@ -31,8 +31,7 @@ $ git clone https://github.com/JoaolimaDev/Selecao-salvus.git
 # Acesse a pasta do projeto no seu terminal/cmd
 $ cd Selecao-salvus
 # Instalar as dependências e run docker
-$ npm install,
-$ npm run dev
+$ npm install
 $ npm run dev
 $ sudo docker-compose up -d
 # Criação do banco de desenvolvimento, migration e seeds
